@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/soundLayout"
+    android:layout_width="match_parent"
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:background="@color/white_background"
+    android:layout_marginTop="@dimen/list_item_padding_top"
+    android:paddingTop="@dimen/abc_action_bar_subtitle_bottom_margin_material"
+    android:paddingBottom="@dimen/abc_action_bar_subtitle_bottom_margin_material">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/frameReadSound">
+
+        <ProgressBar
+            android:id="@+id/reading_progress"
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:padding="10dip"/>
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_play_circle_outline_grey600_48dp"
+            android:paddingTop="10dip"
+            android:paddingBottom="10dip"
+            android:paddingLeft="2dip"/>
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/soundTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_toRightOf="@id/frameReadSound"
+        android:layout_toEndOf="@id/frameReadSound"
+        android:gravity="center_vertical"
+        android:layout_centerVertical="true"
+        android:textColor="@color/minion_blue"
+        android:textSize="20sp"
+        android:padding="10dip" />
+
+</RelativeLayout>
