@@ -1,0 +1,10 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="MinionTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorAccent">#F57F17</item>
+        <item name="colorPrimary">@color/minion_blue</item>
+        <item name="colorPrimaryDark">#FBC02D</item>
+    </style>
+
+</resources>

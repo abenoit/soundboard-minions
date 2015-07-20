@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="minion_yellow">#FCE94D</color>
+    <color name="minion_blue">#095573</color>
+    <color name="minion_turquoise">#69D7CF</color>
+    <color name="minion_brown_dark">#35332F</color>
+    <color name="minion_brown_middle">#726F64</color>
+    <color name="beige">#f5f5dc</color>
+    <color name="white">#ffffff</color>
+    <color name="lightgrey">#D7D7D7</color>
+    <color name="blue_highilight">#E1F5FF</color>
+
+    <color name="actionbar_background">#FDD835</color>
+    <color name="white_background">#FEFEFA</color>
+</resources>
