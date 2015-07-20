@@ -1,6 +1,4 @@
 <resources>
     <string name="app_name">Soundboard Minions</string>
-
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="press_to_play">Press a sound to play it !</string>
 </resources>

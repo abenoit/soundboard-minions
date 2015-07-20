@@ -46,35 +46,44 @@ public class SoundsAdapter extends ArrayAdapter<Sound> {
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    playSound(sound, avatar, progressReading);
+                    playSound(sound, avatar, progressReading, v);
                 }
             });
 
             return convertView;
         }
 
-        private void setReadingState(ImageView playSoundImg, View progressReading) {
+        private void setReadingState(ImageView playSoundImg, View progressReading, View mainView) {
             Utilities.showProgress(true, playSoundImg, progressReading);
+            mainView.setBackgroundResource(R.color.blue_highilight);
         }
 
-        private void setStopReadingState(ImageView playSoundImg, View progressReading) {
+        private void setStopReadingState(ImageView playSoundImg, View progressReading, View mainView) {
             Utilities.showProgress(false, playSoundImg, progressReading);
+            mainView.setBackgroundResource(R.color.white_background);
         }
 
-        protected void playSound(Sound sound, final ImageView playSoundImg, final View progressReading) {
+        private MediaPlayer mPlayer;
+
+        protected void playSound(Sound sound, final ImageView playSoundImg, final View progressReading, final View mainView) {
             if (!isMusicPlaying) {
-                setReadingState(playSoundImg, progressReading);
-                MediaPlayer mPlayer = MediaPlayer.create(getContext(), sound.getResource());
+                mPlayer = MediaPlayer.create(getContext(), sound.getResource());
+                setReadingState(playSoundImg, progressReading, mainView);
                 mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override
                     public void onCompletion(MediaPlayer mp) {
                         isMusicPlaying = false;
-                        setStopReadingState(playSoundImg, progressReading);
+                        setStopReadingState(playSoundImg, progressReading, mainView);
                     }
                 });
                 mPlayer.start();
                 mPlayer.seekTo(0);
                 isMusicPlaying = true;
+            }
+            else if(mPlayer != null){
+                mPlayer.stop();
+                isMusicPlaying = false;
+                setStopReadingState(playSoundImg, progressReading, mainView);
             }
         }
 

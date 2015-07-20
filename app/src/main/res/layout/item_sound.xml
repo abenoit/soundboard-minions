@@ -16,7 +16,7 @@
 
             <ImageView
                 android:id="@+id/soundAvatar"
-                android:layout_width="75dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:textColor="@color/minion_blue"
                 android:paddingBottom="10dip"
