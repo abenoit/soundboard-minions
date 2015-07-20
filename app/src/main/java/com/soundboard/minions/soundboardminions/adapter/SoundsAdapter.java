@@ -19,7 +19,7 @@ import java.util.List;
 
 public class SoundsAdapter extends ArrayAdapter<Sound> {
 
-        private boolean isMusicPlaying;
+        private static boolean isMusicPlaying;
 
         public SoundsAdapter(Context context, List<Sound> sounds) {
             super(context, 0, sounds);
@@ -64,7 +64,6 @@ public class SoundsAdapter extends ArrayAdapter<Sound> {
         }
 
         private MediaPlayer mPlayer;
-
         protected void playSound(Sound sound, final ImageView playSoundImg, final View progressReading, final View mainView) {
             if (!isMusicPlaying) {
                 mPlayer = MediaPlayer.create(getContext(), sound.getResource());
@@ -76,6 +75,7 @@ public class SoundsAdapter extends ArrayAdapter<Sound> {
                         setStopReadingState(playSoundImg, progressReading, mainView);
                     }
                 });
+
                 mPlayer.start();
                 mPlayer.seekTo(0);
                 isMusicPlaying = true;
