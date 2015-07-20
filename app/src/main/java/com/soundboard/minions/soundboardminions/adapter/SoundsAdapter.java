@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,12 +56,12 @@ public class SoundsAdapter extends ArrayAdapter<Sound> {
 
         private void setReadingState(ImageView playSoundImg, View progressReading, View mainView) {
             Utilities.showProgress(true, playSoundImg, progressReading);
-            mainView.setBackgroundResource(R.color.blue_highilight);
+            ((CardView) mainView).setCardBackgroundColor(getContext().getResources().getColor(R.color.blue_highilight));
         }
 
         private void setStopReadingState(ImageView playSoundImg, View progressReading, View mainView) {
             Utilities.showProgress(false, playSoundImg, progressReading);
-            mainView.setBackgroundResource(R.color.white_background);
+            ((CardView) mainView).setCardBackgroundColor(getContext().getResources().getColor(R.color.white_background));
         }
 
         private MediaPlayer mPlayer;
