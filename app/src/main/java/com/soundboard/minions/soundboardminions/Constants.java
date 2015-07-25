@@ -23,7 +23,15 @@ public class Constants {
                 add(new Sound(R.raw.bananashort, "Banana", id++, R.drawable.avatar_amused_brown));
                 add(new Sound(R.raw.bananalong, "Banana (long)", id++, R.drawable.avatar_amused_brown));
                 add(new Sound(R.raw.tadaaa, "Tadaaa", id++, R.drawable.avatar_normal_brown));
-                add(new Sound(R.raw.laughing, "Laughing", id, R.drawable.avatar_laughing_brown));
+                add(new Sound(R.raw.laughing, "Laughing", id++, R.drawable.avatar_laughing_brown));
+                add(new Sound(R.raw.papaya, "Papaya", id++, R.drawable.avatar_blase_brown));
+                add(new Sound(R.raw.tikka_massala, "Tikka Massala", id++, R.drawable.avatar_surprised_brown));
+                add(new Sound(R.raw.bat_bat, "Bat Bat ?", id++, R.drawable.avatar_normal_brown));
+                add(new Sound(R.raw.hehehe, "He he he", id++, R.drawable.avatar_laughing_brown));
+                add(new Sound(R.raw.look_at_you, "Look at you !", id++, R.drawable.avatar_down_brown));
+                add(new Sound(R.raw.yup_la_lo_doo, "Yup La Lo Doo", id++, R.drawable.avatar_happy_brown));
+                add(new Sound(R.raw.monster, "Monster", id++, R.drawable.avatar_super_mad_brown));
+                add(new Sound(R.raw.go_to_sleep, "Go to sleep", id, R.drawable.avatar_tired_brown));
             }}
     );
 
