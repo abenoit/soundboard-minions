@@ -27,4 +27,9 @@ public class Sound {
         return resource;
     }
 
+    public Integer getId() {
+        return Id;
+    }
+
+
 }
