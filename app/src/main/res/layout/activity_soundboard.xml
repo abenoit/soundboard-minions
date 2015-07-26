@@ -10,13 +10,22 @@
         android:id="@+id/tutorial"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:paddingBottom="15dp"
+        android:textSize="18sp"
+        android:paddingBottom="5dp"
         android:paddingTop="15dp"
         android:gravity="center_horizontal"
         android:text="@string/press_to_play"/>
 
-    <GridView xmlns:android="http://schemas.android.com/apk/res/android"
+    <TextView
+        android:id="@+id/tutorial_ringtone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:paddingBottom="15dp"
+        android:gravity="center_horizontal"
+        android:text="@string/long_press_to_set_as_ringtone"/>
+
+    <GridView
         android:id="@+id/soundsListLayout"
         android:clipToPadding="false"
         android:layout_width="match_parent"

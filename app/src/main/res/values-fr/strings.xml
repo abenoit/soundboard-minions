@@ -3,4 +3,16 @@
     <string name="app_name">Soundboard Minions</string>
     <string name="press_to_play">Appuie sur un son pour le jouer !</string>
     <string name="title_activity_memory">Memory</string>
+
+    <string name="goToSoundboard">Soundboard</string>
+    <string name="goToMemory">Jouer au Memory</string>
+    <string name="set_as_ringtone">Définir %s comme sonnerie</string>
+    <string name="ringtone">Sonnerie</string>
+    <string name="set_as_ringtone_question">Définir %s en tant que nouvelle sonnerie par défaut ?</string>
+    <string name="set_ringtone_done">Sonnerie par défaut changée</string>
+    <string name="retry">Rejouer</string>
+    <string name="congratulations">Félicitations</string>
+    <string name="game_is_over">Le jeu est terminé. Veux-tu refaire une partie ?</string>
+    <string name="menu">Retour au menu principal</string>
+    <string name="long_press_to_set_as_ringtone">Reste appuyé sur un son pour le définir comme sonnerie !</string>
 </resources>

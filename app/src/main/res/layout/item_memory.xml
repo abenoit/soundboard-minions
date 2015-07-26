@@ -5,6 +5,7 @@
     android:layout_width="100dp"
     android:layout_height="100dp"
     android:paddingTop="10dp"
+    android:id="@+id/card"
     card_view:cardCornerRadius="5dp"
     card_view:cardElevation="4dp">
 

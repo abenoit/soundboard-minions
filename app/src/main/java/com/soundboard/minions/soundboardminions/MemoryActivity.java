@@ -1,5 +1,8 @@
 package com.soundboard.minions.soundboardminions;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -23,6 +26,7 @@ public class MemoryActivity extends ActionBarActivity implements MemoryWonListen
     private List<MemoryPiece> memoryPieces;
     private GridView soundListView;
     private final int memorySize = 12;
+    private MemoryPieceAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +39,12 @@ public class MemoryActivity extends ActionBarActivity implements MemoryWonListen
     private void InitSoundList() {
         memoryPieces = new ArrayList<>();
         generateNewGame();
-        MemoryPieceAdapter adapter = new MemoryPieceAdapter(this, memoryPieces, this);
+        adapter = new MemoryPieceAdapter(this, memoryPieces, this);
         soundListView.setAdapter(adapter);
     }
 
     private void generateNewGame() {
+        memoryPieces.clear();
         List<Sound> shuffledSoundList = Constants.SHORT_SOUNDS_LIST;
         Collections.shuffle(shuffledSoundList);
 
@@ -70,8 +75,33 @@ public class MemoryActivity extends ActionBarActivity implements MemoryWonListen
         soundListView = (GridView) findViewById(R.id.memoryPieceLayout);
     }
 
+    private void launchGame(){
+        generateNewGame();
+        adapter.reloadGame();
+    }
+
+    private void goToMainMenu(){
+        Intent intent = new Intent(this, MenuActivity.class);
+        startActivity(intent);
+        this.finish();
+    }
+
     @Override
     public void memoryWon() {
-        Toast.makeText(this.getApplicationContext(), "Jeu terminé", Toast.LENGTH_LONG).show();
+        new AlertDialog.Builder(this)
+                .setTitle(getResources().getString(R.string.congratulations))
+                .setMessage(getResources().getString(R.string.game_is_over))
+                .setPositiveButton(R.string.retry, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        launchGame();
+                    }
+                })
+                .setNegativeButton(R.string.menu, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        goToMainMenu();
+                    }
+                })
+                .show();
     }
 }

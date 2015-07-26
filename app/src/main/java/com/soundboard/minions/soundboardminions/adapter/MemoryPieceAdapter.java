@@ -1,5 +1,7 @@
 package com.soundboard.minions.soundboardminions.adapter;
 
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
@@ -9,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.soundboard.minions.soundboardminions.Constants;
@@ -37,6 +40,11 @@ public class MemoryPieceAdapter extends ArrayAdapter<MemoryPiece> {
         this.memoryWonListener = listener;
     }
 
+    public void reloadGame(){
+        wonPieces = 0;
+        this.notifyDataSetChanged();
+    }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         final MemoryPiece mp = getItem(position);
@@ -58,9 +66,15 @@ public class MemoryPieceAdapter extends ArrayAdapter<MemoryPiece> {
 
         final View progressReading = convertView.findViewById(R.id.reading_progress);
         final ImageView avatar = (ImageView) convertView.findViewById(R.id.soundAvatar);
+        final CardView cardView = (CardView) convertView.findViewById(R.id.card);
+
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(getContext(), R.animator.card_flip_right_in);
+                set.setTarget(cardView);
+                set.start();
 
                 if (mp.getState() == Constants.MemoryPieceState.HIDDEN) {
                     playSound(mp.getSound(), avatar, progressReading);

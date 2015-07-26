@@ -2,7 +2,6 @@ package com.soundboard.minions.soundboardminions.adapter;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
@@ -12,8 +11,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.gc.materialdesign.views.ButtonRectangle;
 import com.soundboard.minions.soundboardminions.R;
 import com.soundboard.minions.soundboardminions.Utilities;
+import com.soundboard.minions.soundboardminions.listener.SoundboardEvents;
 import com.soundboard.minions.soundboardminions.model.Sound;
 
 import java.util.List;
@@ -21,10 +22,13 @@ import java.util.List;
 public class SoundsAdapter extends ArrayAdapter<Sound> {
 
         private static boolean isMusicPlaying;
+        private SoundboardEvents soundboardEvents;
 
-        public SoundsAdapter(Context context, List<Sound> sounds) {
+
+        public SoundsAdapter(Context context, List<Sound> sounds, SoundboardEvents soundboardEvents) {
             super(context, 0, sounds);
             isMusicPlaying = false;
+            this.soundboardEvents = soundboardEvents;
         }
 
         @Override
@@ -35,14 +39,29 @@ public class SoundsAdapter extends ArrayAdapter<Sound> {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_sound, parent, false);
             }
 
+            final ImageView avatar = (ImageView) convertView.findViewById(R.id.soundAvatar);
+            final View progressReading = convertView.findViewById(R.id.reading_progress);
+            final CardView cardView = (CardView) convertView.findViewById(R.id.cardsound);
+
             TextView title = (TextView) convertView.findViewById(R.id.soundTitle);
             title.setText(sound.getTitle());
             Typeface font = Typeface.createFromAsset(getContext().getAssets(), "fonts/Young.ttf");
             title.setTypeface(font);
 
-            final ImageView avatar = (ImageView) convertView.findViewById(R.id.soundAvatar);
             avatar.setImageResource(sound.getAvatarId());
-            final View progressReading = convertView.findViewById(R.id.reading_progress);
+
+//            ButtonRectangle setAsRingtoneBtn = (ButtonRectangle) convertView.findViewById(R.id.set_as_ringtone);
+//            String btnText = getContext().getResources().getString(R.string.set_as_ringtone, sound.getTitle());
+//            setAsRingtoneBtn.setText(btnText);
+//            setAsRingtoneBtn.getTextView().setTextSize(10);
+//            setAsRingtoneBtn.getTextView().setTypeface(Typeface.DEFAULT);
+//            setAsRingtoneBtn.setTextColor(getContext().getResources().getColor(R.color.minion_blue));
+//            setAsRingtoneBtn.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    soundboardEvents.setRingtone(sound);
+//                }
+//            });
 
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -50,6 +69,15 @@ public class SoundsAdapter extends ArrayAdapter<Sound> {
                     playSound(sound, avatar, progressReading, v);
                 }
             });
+
+            convertView.setOnLongClickListener(
+                    new View.OnLongClickListener() {
+                        @Override
+                        public boolean onLongClick(View v) {
+                            soundboardEvents.setRingtone(sound);
+                            return true;
+                        }
+                    });
 
             return convertView;
         }
