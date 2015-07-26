@@ -1,7 +1,6 @@
 package com.soundboard.minions.soundboardminions.adapter;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
@@ -9,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.soundboard.minions.soundboardminions.Constants;
 import com.soundboard.minions.soundboardminions.FlipAnimation;
@@ -69,6 +67,12 @@ public class MemoryPieceAdapter extends ArrayAdapter<MemoryPiece> {
         else if(mp.getState() == Constants.MemoryPieceState.DISPLAYED){
             back.setCardBackgroundColor(getContext().getResources().getColor(R.color.minion_yellow));
             reading_progress.setVisibility(View.INVISIBLE);
+        }
+        else {
+            back.setCardBackgroundColor(getContext().getResources().getColor(R.color.white_background));
+            reading_progress.setVisibility(View.VISIBLE);
+            back.setVisibility(View.GONE);
+            front.setVisibility(View.VISIBLE);
         }
 
         front.setOnClickListener(new View.OnClickListener() {

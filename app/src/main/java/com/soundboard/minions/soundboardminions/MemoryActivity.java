@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
 public class MemoryActivity extends ActionBarActivity implements MemoryWonListener {
 
     private List<MemoryPiece> memoryPieces;
