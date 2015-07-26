@@ -25,7 +25,7 @@ public class MemoryActivity extends ActionBarActivity implements MemoryWonListen
 
     private List<MemoryPiece> memoryPieces;
     private GridView soundListView;
-    private final int memorySize = 12;
+    private final int memorySize = 4;
     private MemoryPieceAdapter adapter;
 
     @Override
@@ -69,7 +69,6 @@ public class MemoryActivity extends ActionBarActivity implements MemoryWonListen
             }
         }
     }
-
 
     private void setUIReferences() {
         soundListView = (GridView) findViewById(R.id.memoryPieceLayout);
