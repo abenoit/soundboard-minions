@@ -146,6 +146,7 @@ public class MemoryPieceAdapter extends ArrayAdapter<MemoryPiece> {
                 if (wonPieces == nbPieces) {
                     memoryWonListener.memoryWon();
                 }
+                this.notifyDataSetChanged();
             } else {
                 // If the pair is not valid, turn the pieces back
                 reversedPieces.get(0).setState(Constants.MemoryPieceState.HIDDEN);
@@ -160,9 +161,9 @@ public class MemoryPieceAdapter extends ArrayAdapter<MemoryPiece> {
             reversedPieceRelative.add(rootLayout);
             reversedPieces.add(mp);
             reversedPieceEvents.add(backToFront);
+            this.notifyDataSetChanged();
         }
 
-        this.notifyDataSetChanged();
     }
 
 

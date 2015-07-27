@@ -24,7 +24,7 @@ public class MemoryActivity extends ActionBarActivity implements MemoryWonListen
 
     private List<MemoryPiece> memoryPieces;
     private GridView soundListView;
-    private final int memorySize = 4;
+    private final int memorySize = 12;
     private MemoryPieceAdapter adapter;
 
     @Override
