@@ -2,11 +2,13 @@ package com.soundboard.minions.soundboardminions.adapter;
 
 import android.content.Context;
 import android.media.MediaPlayer;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.soundboard.minions.soundboardminions.Constants;
@@ -50,30 +52,36 @@ public class MemoryPieceAdapter extends ArrayAdapter<MemoryPiece> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         final MemoryPiece mp = getItem(position);
-        // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_memory, parent, false);
         }
 
         final ProgressBar reading_progress = (ProgressBar) convertView.findViewById(R.id.reading_progress);
+        final ImageView play = (ImageView) convertView.findViewById(R.id.play);
         final View rootLayout = convertView.findViewById(R.id.relative);
         final CardView front = (CardView) convertView.findViewById(R.id.card_face);
         final CardView back = (CardView) convertView.findViewById(R.id.card_back);
 
-        if(mp.getState() == Constants.MemoryPieceState.WIN){
-            back.setCardBackgroundColor(getContext().getResources().getColor(R.color.blue_highilight));
-            reading_progress.setVisibility(View.INVISIBLE);
-        }
-        else if(mp.getState() == Constants.MemoryPieceState.DISPLAYED){
-            back.setCardBackgroundColor(getContext().getResources().getColor(R.color.minion_yellow));
-            reading_progress.setVisibility(View.INVISIBLE);
-        }
-        else {
-            back.setCardBackgroundColor(getContext().getResources().getColor(R.color.white_background));
-            reading_progress.setVisibility(View.VISIBLE);
-            back.setVisibility(View.GONE);
-            front.setVisibility(View.VISIBLE);
-        }
+        setCardAppearance(mp, reading_progress, play, front, back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mp.getState() == Constants.MemoryPieceState.DISPLAYED) {
+                    play.setVisibility(View.GONE);
+                    reading_progress.setVisibility(View.VISIBLE);
+                    playSound(mp.getSound());
+                    mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                        @Override
+                        public void onCompletion(final MediaPlayer mediaplayer) {
+                            reading_progress.setVisibility(View.GONE);
+                            play.setVisibility(View.VISIBLE);
+                            notifyDataSetChanged();
+                        }
+                    });
+                }
+            };
+        });
 
         front.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +98,7 @@ public class MemoryPieceAdapter extends ArrayAdapter<MemoryPiece> {
                         public void onCompletion(final MediaPlayer mediaplayer) {
                             FlipAnimation backToFront = new FlipAnimation(back, front);
                             manageGame(rootLayout, backToFront, mp);
+
                         }
                     });
                 }
@@ -97,6 +106,33 @@ public class MemoryPieceAdapter extends ArrayAdapter<MemoryPiece> {
         });
 
         return convertView;
+    }
+
+    private void setCardAppearance(MemoryPiece mp, ProgressBar reading_progress, ImageView play, CardView front, CardView back) {
+        if (mp.getState() == Constants.MemoryPieceState.WIN) {
+            back.setCardBackgroundColor(getContext().getResources().getColor(R.color.blue_highilight));
+            play.setVisibility(View.VISIBLE);
+            reading_progress.setVisibility(View.GONE);
+            play.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_done_black_48dp));
+
+            back.setVisibility(View.VISIBLE);
+            front.setVisibility(View.GONE);
+        } else if (mp.getState() == Constants.MemoryPieceState.DISPLAYED) {
+            play.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_play_circle_outline_grey600_48dp));
+            play.setVisibility(View.VISIBLE);
+            reading_progress.setVisibility(View.GONE);
+
+            back.setVisibility(View.VISIBLE);
+            front.setVisibility(View.GONE);
+        } else {
+            back.setCardBackgroundColor(getContext().getResources().getColor(R.color.white_background));
+            play.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_play_circle_outline_grey600_48dp));
+            play.setVisibility(View.GONE);
+            reading_progress.setVisibility(View.VISIBLE);
+
+            back.setVisibility(View.GONE);
+            front.setVisibility(View.VISIBLE);
+        }
     }
 
     private void manageGame(View rootLayout, FlipAnimation backToFront, MemoryPiece mp) {
