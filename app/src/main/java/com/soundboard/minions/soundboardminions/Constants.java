@@ -9,6 +9,7 @@ import java.util.List;
 public class Constants {
 
     public static final String LOGTAG = "MinionsSoundboardLog";
+    public static final String APP_TRACKER = "UA-64065261-2";
 
     /**
      * Hidden = initial state, not displayed yer
@@ -50,17 +51,12 @@ public class Constants {
                 add(new Sound(R.raw.yay, "Yay", id++, R.drawable.avatar_happy_brown));
                 add(new Sound(R.raw.what, "Whaaat ?!", id++, R.drawable.avatar_normal_brown));
                 add(new Sound(R.raw.aww, "Aww", id++, R.drawable.avatar_amused_brown));
-                add(new Sound(R.raw.bottom2, "Bottom", id++, R.drawable.avatar_down_brown));
                 add(new Sound(R.raw.okok, "Ok", id++, R.drawable.avatar_surprised_brown));
                 add(new Sound(R.raw.oh, "Oh", id++, R.drawable.avatar_down_brown));
-                add(new Sound(R.raw.bananashort, "Banana", id++, R.drawable.avatar_amused_brown));
                 add(new Sound(R.raw.tadaaa, "Tadaaa", id++, R.drawable.avatar_normal_brown));
                 add(new Sound(R.raw.laughing, "Laughing", id++, R.drawable.avatar_laughing_brown));
-                add(new Sound(R.raw.bat_bat, "Bat Bat ?", id++, R.drawable.avatar_normal_brown));
                 add(new Sound(R.raw.hehehe, "He he he", id++, R.drawable.avatar_laughing_brown));
                 add(new Sound(R.raw.monster, "Monster", id, R.drawable.avatar_super_mad_brown));
             }};
-
-
 
 }

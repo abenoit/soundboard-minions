@@ -1,8 +1,9 @@
-package com.soundboard.minions.soundboardminions;
+package com.soundboard.minions.soundboardminions.utilities;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -16,6 +17,8 @@ import android.provider.Settings;
 import android.view.View;
 import android.widget.Toast;
 
+import com.soundboard.minions.soundboardminions.Constants;
+import com.soundboard.minions.soundboardminions.R;
 import com.soundboard.minions.soundboardminions.model.Sound;
 
 import java.io.File;
@@ -121,5 +124,13 @@ public class Utilities {
         } catch (Throwable t) {
 
         }
+    }
+
+    public static void trackAction(Activity activity, String label) {
+        GoogleAnalyticsTracker.trackAction(activity, activity.getLocalClassName(), label);
+    }
+
+    public static void trackNavigation(Activity activity) {
+        GoogleAnalyticsTracker.trackNavigation(activity, activity.getLocalClassName());
     }
 }

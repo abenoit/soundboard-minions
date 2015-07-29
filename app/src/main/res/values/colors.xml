@@ -9,6 +9,7 @@
     <color name="white">#ffffff</color>
     <color name="lightgrey">#D7D7D7</color>
     <color name="blue_highilight">#E1F5FF</color>
+    <color name="green_win">#A7E3A1</color>
 
     <color name="actionbar_background">#FDD835</color>
     <color name="white_background">#FEFEFA</color>

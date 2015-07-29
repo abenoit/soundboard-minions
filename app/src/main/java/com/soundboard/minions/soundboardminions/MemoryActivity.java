@@ -15,6 +15,7 @@ import com.soundboard.minions.soundboardminions.adapter.SoundsAdapter;
 import com.soundboard.minions.soundboardminions.listener.MemoryWonListener;
 import com.soundboard.minions.soundboardminions.model.MemoryPiece;
 import com.soundboard.minions.soundboardminions.model.Sound;
+import com.soundboard.minions.soundboardminions.utilities.Utilities;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,6 +32,7 @@ public class MemoryActivity extends ActionBarActivity implements MemoryWonListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_memory);
+        Utilities.trackNavigation(this);
         setUIReferences();
         InitSoundList();
     }

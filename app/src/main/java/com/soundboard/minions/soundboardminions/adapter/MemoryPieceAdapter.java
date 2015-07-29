@@ -110,7 +110,7 @@ public class MemoryPieceAdapter extends ArrayAdapter<MemoryPiece> {
 
     private void setCardAppearance(MemoryPiece mp, ProgressBar reading_progress, ImageView play, CardView front, CardView back) {
         if (mp.getState() == Constants.MemoryPieceState.WIN) {
-            back.setCardBackgroundColor(getContext().getResources().getColor(R.color.blue_highilight));
+            back.setCardBackgroundColor(getContext().getResources().getColor(R.color.green_win));
             play.setVisibility(View.VISIBLE);
             reading_progress.setVisibility(View.GONE);
             play.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_done_black_48dp));

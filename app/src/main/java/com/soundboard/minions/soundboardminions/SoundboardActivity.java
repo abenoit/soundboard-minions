@@ -6,12 +6,12 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.GridView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.soundboard.minions.soundboardminions.adapter.SoundsAdapter;
 import com.soundboard.minions.soundboardminions.listener.SoundboardEvents;
 import com.soundboard.minions.soundboardminions.model.Sound;
+import com.soundboard.minions.soundboardminions.utilities.Utilities;
 
 public class SoundboardActivity extends ActionBarActivity implements SoundboardEvents {
 
@@ -19,6 +19,7 @@ public class SoundboardActivity extends ActionBarActivity implements SoundboardE
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_soundboard);
+        Utilities.trackNavigation(this);
         setUIReferences();
     }
 

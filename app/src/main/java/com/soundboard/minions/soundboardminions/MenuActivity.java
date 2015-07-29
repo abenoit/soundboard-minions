@@ -7,6 +7,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.soundboard.minions.soundboardminions.utilities.Utilities;
+
 
 public class MenuActivity extends ActionBarActivity {
 
@@ -14,6 +16,7 @@ public class MenuActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+        Utilities.trackNavigation(this);
     }
 
     public void goToSoundboard(View v){
