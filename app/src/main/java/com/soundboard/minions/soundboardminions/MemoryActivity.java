@@ -5,16 +5,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.GridView;
-import android.widget.Toast;
 
 import com.soundboard.minions.soundboardminions.adapter.MemoryPieceAdapter;
-import com.soundboard.minions.soundboardminions.adapter.SoundsAdapter;
 import com.soundboard.minions.soundboardminions.listener.MemoryWonListener;
 import com.soundboard.minions.soundboardminions.model.MemoryPiece;
 import com.soundboard.minions.soundboardminions.model.Sound;
+import com.soundboard.minions.soundboardminions.utilities.Constants;
 import com.soundboard.minions.soundboardminions.utilities.Utilities;
 
 import java.util.ArrayList;

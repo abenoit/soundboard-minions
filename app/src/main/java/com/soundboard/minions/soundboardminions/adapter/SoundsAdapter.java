@@ -76,7 +76,7 @@ public class SoundsAdapter extends ArrayAdapter<Sound> {
                 new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View v) {
-                        soundboardEvents.setRingtone(sound);
+                        soundboardEvents.displayRingtonePopup(sound);
                         return true;
                     }
                 });

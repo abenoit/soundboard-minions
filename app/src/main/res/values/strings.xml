@@ -17,4 +17,6 @@
     <string name="game_is_over">The game is over. Want to play it again ?</string>
     <string name="menu">Back to main menu</string>
     <string name="long_press_to_set_as_ringtone">Long press on a sound to set it as your ringtone !</string>
+    <string name="notification">Notification sound</string>
+    <string name="define_as">Define %s as ...</string>
 </resources>

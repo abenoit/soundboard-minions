@@ -11,7 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
-import com.soundboard.minions.soundboardminions.Constants;
+import com.soundboard.minions.soundboardminions.utilities.Constants;
 import com.soundboard.minions.soundboardminions.FlipAnimation;
 import com.soundboard.minions.soundboardminions.R;
 import com.soundboard.minions.soundboardminions.listener.MemoryWonListener;

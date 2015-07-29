@@ -1,5 +1,6 @@
-package com.soundboard.minions.soundboardminions;
+package com.soundboard.minions.soundboardminions.utilities;
 
+import com.soundboard.minions.soundboardminions.R;
 import com.soundboard.minions.soundboardminions.model.Sound;
 
 import java.util.ArrayList;
@@ -17,6 +18,8 @@ public class Constants {
      * Win = user found the pair
      */
     public enum MemoryPieceState {HIDDEN, DISPLAYED, WIN}
+
+    public enum TypeRingtone {RINGTONE, NOTIFICATION}
 
 
     public static final List<Sound> SOUNDS_LIST = Collections.unmodifiableList(
