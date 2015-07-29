@@ -65,8 +65,7 @@ public class Utilities {
         return Constants.SOUNDS_LIST.get(id);
     }
 
-    private static void setAsSystemSound(Sound sound, Context context, Constants.TypeRingtone type)
-    {
+    public static void setAsRing(Sound sound, Context context) {
         File file = new File(Environment.getExternalStorageDirectory(),
                 "/myRingtonFolder/Audio/");
         if (!file.exists()) {
@@ -77,10 +76,71 @@ public class Utilities {
                 .getAbsolutePath() + "/myRingtonFolder/Audio/";
 
         File f = new File(path + "/", sound.getTitle() + ".mp3");
-
-        Uri mUri = Uri.parse("android.resource://"
-                + context.getPackageName() + "/raw/" + sound.getResourceName());
+        Uri mUri = Uri.parse("android.resource://" + context.getPackageName() + "/raw/" + sound.getResourceName());
         ContentResolver mCr = context.getContentResolver();
+
+        //if (!file.exists()) {
+            AssetFileDescriptor soundFile;
+            try {
+                soundFile = mCr.openAssetFileDescriptor(mUri, "r");
+            } catch (FileNotFoundException e) {
+                soundFile = null;
+            }
+
+            try {
+                byte[] readData = new byte[1024];
+                FileInputStream fis = soundFile.createInputStream();
+                FileOutputStream fos = new FileOutputStream(f);
+                int i = fis.read(readData);
+
+                while (i != -1) {
+                    fos.write(readData, 0, i);
+                    i = fis.read(readData);
+                }
+
+                fos.close();
+            } catch (IOException io) {
+            }
+        //}
+
+        try {
+
+            ContentValues values = new ContentValues();
+            values.put(MediaStore.MediaColumns.DATA, f.getAbsolutePath());
+            values.put(MediaStore.MediaColumns.TITLE, sound.getTitle());
+            values.put(MediaStore.MediaColumns.MIME_TYPE, "audio/mp3");
+            values.put(MediaStore.MediaColumns.SIZE, f.length());
+            values.put(MediaStore.Audio.Media.ARTIST, R.string.app_name);
+            values.put(MediaStore.Audio.Media.IS_RINGTONE, true);
+            values.put(MediaStore.Audio.Media.IS_MUSIC, false);
+
+            Uri uri = MediaStore.Audio.Media.getContentUriForPath(f
+                    .getAbsolutePath());
+            mCr.delete(uri, MediaStore.MediaColumns.DATA + "=\"" + f.getAbsolutePath() + "\"", null);
+            Uri newUri = mCr.insert(uri, values);
+
+            RingtoneManager.setActualDefaultRingtoneUri(context, RingtoneManager.TYPE_RINGTONE, newUri);
+            Settings.System.putString(mCr, Settings.System.RINGTONE, newUri.toString());
+            Toast.makeText(context.getApplicationContext(), context.getResources().getString(R.string.set_ringtone_done), Toast.LENGTH_LONG).show();
+
+        } catch (Throwable t) { }
+    }
+
+    private static void setAsNotif(Sound sound, Context context) {
+        File file = new File(Environment.getExternalStorageDirectory(),
+                "/myRingtonFolder/Audio/");
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+
+        String path = Environment.getExternalStorageDirectory()
+                .getAbsolutePath() + "/myRingtonFolder/Audio/";
+
+        File f = new File(path + "/", sound.getTitle() + ".mp3");
+        Uri mUri = Uri.parse("android.resource://" + context.getPackageName() + "/raw/" + sound.getResourceName());
+        ContentResolver mCr = context.getContentResolver();
+
+        //if (!file.exists()) {
         AssetFileDescriptor soundFile;
         try {
             soundFile = mCr.openAssetFileDescriptor(mUri, "r");
@@ -102,60 +162,37 @@ public class Utilities {
             fos.close();
         } catch (IOException io) {
         }
-        ContentValues values = new ContentValues();
-        values.put(MediaStore.MediaColumns.DATA, f.getAbsolutePath());
-        values.put(MediaStore.MediaColumns.TITLE, sound.getTitle());
-        values.put(MediaStore.MediaColumns.MIME_TYPE, "audio/mp3");
-        values.put(MediaStore.MediaColumns.SIZE, f.length());
-        values.put(MediaStore.Audio.Media.ARTIST, R.string.app_name);
-
-        values.put(MediaStore.Audio.Media.IS_ALARM, false);
-        values.put(MediaStore.Audio.Media.IS_MUSIC, false);
-
-//        if(type == Constants.TypeRingtone.RINGTONE) {
-//            values.put(MediaStore.Audio.Media.IS_RINGTONE, true);
-//            values.put(MediaStore.Audio.Media.IS_NOTIFICATION, false);
-//
-//        }
-//        if(type == Constants.TypeRingtone.NOTIFICATION) {
-//            values.put(MediaStore.Audio.Media.IS_RINGTONE, false);
-//            values.put(MediaStore.Audio.Media.IS_NOTIFICATION, true);
-//        }
-
-           values.put(MediaStore.Audio.Media.IS_RINGTONE, true);
-        values.put(MediaStore.Audio.Media.IS_NOTIFICATION, true);
-
-        Uri uri = MediaStore.Audio.Media.getContentUriForPath(f
-                .getAbsolutePath());
-        Uri newUri = mCr.insert(uri, values);
+        //}
 
         try {
-           context.getApplicationContext().getContentResolver().delete(uri, MediaStore.MediaColumns.DATA + "=\"" + f.getAbsolutePath() + "\"", null);
 
-            if(type == Constants.TypeRingtone.NOTIFICATION) {
-                RingtoneManager.setActualDefaultRingtoneUri(context,
-                        RingtoneManager.TYPE_NOTIFICATION, newUri);
-                Settings.System.putString(mCr, Settings.System.NOTIFICATION_SOUND,
-                        newUri.toString());
-            }
-            if(type == Constants.TypeRingtone.RINGTONE)
-            {
-                RingtoneManager.setActualDefaultRingtoneUri(context,
-                        RingtoneManager.TYPE_RINGTONE, newUri);
-                Settings.System.putString(mCr, Settings.System.RINGTONE,
-                        newUri.toString());
-            }
-        } catch (Throwable t) {
+            ContentValues values = new ContentValues();
+            values.put(MediaStore.MediaColumns.DATA, f.getAbsolutePath());
+            values.put(MediaStore.MediaColumns.TITLE, sound.getTitle());
+            values.put(MediaStore.MediaColumns.MIME_TYPE, "audio/mp3");
+            values.put(MediaStore.MediaColumns.SIZE, f.length());
+            values.put(MediaStore.Audio.Media.ARTIST, R.string.app_name);
+            values.put(MediaStore.Audio.Media.IS_NOTIFICATION, true);
+            values.put(MediaStore.Audio.Media.IS_MUSIC, false);
 
-        }
+            Uri uri = MediaStore.Audio.Media.getContentUriForPath(f
+                    .getAbsolutePath());
+            mCr.delete(uri, MediaStore.MediaColumns.DATA + "=\"" + f.getAbsolutePath() + "\"", null);
+            Uri newUri = mCr.insert(uri, values);
+
+            RingtoneManager.setActualDefaultRingtoneUri(context, RingtoneManager.TYPE_NOTIFICATION, newUri);
+            Settings.System.putString(mCr, Settings.System.NOTIFICATION_SOUND, newUri.toString());
+            Toast.makeText(context.getApplicationContext(), context.getResources().getString(R.string.set_ringtone_done), Toast.LENGTH_LONG).show();
+
+        } catch (Throwable t) { }
     }
 
     public static void setAsNotification(Sound sound, Context context) {
-        setAsSystemSound(sound, context, Constants.TypeRingtone.NOTIFICATION);
+        setAsNotif(sound, context);
     }
 
     public static void setAsRingtone(Sound sound, Context context) {
-        setAsSystemSound(sound, context, Constants.TypeRingtone.RINGTONE);
+        setAsRing(sound, context);
     }
 
     public static void trackAction(Activity activity, String label) {

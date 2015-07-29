@@ -59,15 +59,11 @@ public class RingtoneFragment extends DialogFragment implements SetRingtoneListe
 
     @Override
     public void setAsRingtone() {
-        Utilities.setAsRingtone(this.sound, this.context);
-        this.events.disablePopup();
-        Toast.makeText(context, context.getResources().getString(R.string.set_ringtone_done), Toast.LENGTH_LONG).show();
-    }
+        events.setAsRingtone(this.sound);
+   }
 
     @Override
     public void setAsNotification() {
-        Utilities.setAsNotification(this.sound, this.context);
-        this.events.disablePopup();
-        Toast.makeText(context, context.getResources().getString(R.string.set_ringtone_done), Toast.LENGTH_LONG).show();
+        events.setAsNotification(this.sound);
     }
 }

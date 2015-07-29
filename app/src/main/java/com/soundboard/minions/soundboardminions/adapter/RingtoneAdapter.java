@@ -1,8 +1,6 @@
 package com.soundboard.minions.soundboardminions.adapter;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +10,7 @@ import android.widget.TextView;
 import com.soundboard.minions.soundboardminions.R;
 import com.soundboard.minions.soundboardminions.listener.SetRingtoneListener;
 import com.soundboard.minions.soundboardminions.model.RingtoneItem;
-import com.soundboard.minions.soundboardminions.model.Sound;
 import com.soundboard.minions.soundboardminions.utilities.Constants;
-import com.soundboard.minions.soundboardminions.utilities.Utilities;
 
 import java.util.List;
 

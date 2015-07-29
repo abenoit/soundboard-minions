@@ -1,16 +1,15 @@
 package com.soundboard.minions.soundboardminions;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.view.View;
 import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.soundboard.minions.soundboardminions.adapter.SoundsAdapter;
 import com.soundboard.minions.soundboardminions.dialogfragment.RingtoneFragment;
+import com.soundboard.minions.soundboardminions.listener.SetRingtoneListener;
 import com.soundboard.minions.soundboardminions.listener.SoundboardEvents;
 import com.soundboard.minions.soundboardminions.model.RingtoneItem;
 import com.soundboard.minions.soundboardminions.model.Sound;
@@ -20,7 +19,8 @@ import com.soundboard.minions.soundboardminions.utilities.Utilities;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SoundboardActivity extends ActionBarActivity implements SoundboardEvents {
+public class SoundboardActivity extends ActionBarActivity
+        implements SoundboardEvents {
 
     private RingtoneFragment ringtonePopup;
     private List<RingtoneItem> ringtoneItems;
@@ -64,7 +64,7 @@ public class SoundboardActivity extends ActionBarActivity implements SoundboardE
     public void displayPopup(Sound sound) {
         android.app.FragmentManager fragmentManager = this.getFragmentManager();
         ringtonePopup = new RingtoneFragment();
-        ringtonePopup.initFragment(ringtoneItems, this, sound, this);
+        ringtonePopup.initFragment(ringtoneItems, this.getApplicationContext(), sound, this);
         ringtonePopup.show(fragmentManager, "Tag");
     }
 
@@ -77,4 +77,18 @@ public class SoundboardActivity extends ActionBarActivity implements SoundboardE
      * End Popup
      */
 
+
+    @Override
+    public void setAsRingtone(Sound sound) {
+        Utilities.setAsRingtone(sound, getApplicationContext());
+        disablePopup();
+        Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.set_ringtone_done), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void setAsNotification(Sound sound) {
+        Utilities.setAsNotification(sound, getApplicationContext());
+        disablePopup();
+        Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.set_ringtone_done), Toast.LENGTH_LONG).show();
+    }
 }

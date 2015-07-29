@@ -35,7 +35,7 @@ public class Constants {
                 add(new Sound(R.raw.bananashort, "Banana", id++, R.drawable.avatar_amused_brown, "bananashort"));
                 add(new Sound(R.raw.bananalong, "Banana (long)", id++, R.drawable.avatar_amused_brown, "bananalong"));
                 add(new Sound(R.raw.tadaaa, "Tadaaa", id++, R.drawable.avatar_normal_brown, "tadaaa"));
-                add(new Sound(R.raw.laughing, "Laughing", id++, R.drawable.avatar_laughing_brown, "launghting"));
+                add(new Sound(R.raw.laughing, "Laughing", id++, R.drawable.avatar_laughing_brown, "launghing"));
                 add(new Sound(R.raw.papaya, "Papaya", id++, R.drawable.avatar_blase_brown, "papaya"));
                 add(new Sound(R.raw.tikka_massala, "Tikka Massala", id++, R.drawable.avatar_surprised_brown, "tikka_massala"));
                 add(new Sound(R.raw.bat_bat, "Bat Bat ?", id++, R.drawable.avatar_normal_brown, "bat_bat"));
