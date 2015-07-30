@@ -9,12 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.gc.materialdesign.views.ButtonRectangle;
 import com.soundboard.minions.soundboardminions.R;
-import com.soundboard.minions.soundboardminions.Utilities;
+import com.soundboard.minions.soundboardminions.utilities.Utilities;
 import com.soundboard.minions.soundboardminions.listener.SoundboardEvents;
 import com.soundboard.minions.soundboardminions.model.Sound;
 
@@ -78,7 +76,7 @@ public class SoundsAdapter extends ArrayAdapter<Sound> {
                 new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View v) {
-                        soundboardEvents.setRingtone(sound);
+                        soundboardEvents.displayRingtonePopup(sound);
                         return true;
                     }
                 });

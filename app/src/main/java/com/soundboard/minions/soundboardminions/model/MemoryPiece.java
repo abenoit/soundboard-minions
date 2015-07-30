@@ -1,6 +1,6 @@
 package com.soundboard.minions.soundboardminions.model;
 
-import com.soundboard.minions.soundboardminions.Constants;
+import com.soundboard.minions.soundboardminions.utilities.Constants;
 
 public class MemoryPiece {
 

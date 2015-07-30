@@ -1,24 +1,38 @@
 package com.soundboard.minions.soundboardminions;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.GridView;
-import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.soundboard.minions.soundboardminions.adapter.SoundsAdapter;
+import com.soundboard.minions.soundboardminions.dialogfragment.RingtoneFragment;
+import com.soundboard.minions.soundboardminions.listener.SetRingtoneListener;
 import com.soundboard.minions.soundboardminions.listener.SoundboardEvents;
+import com.soundboard.minions.soundboardminions.model.RingtoneItem;
 import com.soundboard.minions.soundboardminions.model.Sound;
+import com.soundboard.minions.soundboardminions.utilities.Constants;
+import com.soundboard.minions.soundboardminions.utilities.Utilities;
 
-public class SoundboardActivity extends ActionBarActivity implements SoundboardEvents {
+import java.util.ArrayList;
+import java.util.List;
+
+public class SoundboardActivity extends ActionBarActivity
+        implements SoundboardEvents {
+
+    private RingtoneFragment ringtonePopup;
+    private List<RingtoneItem> ringtoneItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_soundboard);
+        Utilities.trackNavigation(this);
+        ringtoneItems = new ArrayList<>();
+        ringtoneItems.add(new RingtoneItem(getString(R.string.ringtone), Constants.TypeRingtone.RINGTONE));
+        ringtoneItems.add(new RingtoneItem(getString(R.string.notification), Constants.TypeRingtone.NOTIFICATION));
         setUIReferences();
     }
 
@@ -32,21 +46,49 @@ public class SoundboardActivity extends ActionBarActivity implements SoundboardE
         soundListView.setAdapter(adapter);
     }
 
-    public void setRingtone(final Sound sound){
-        new AlertDialog.Builder(this)
-                .setTitle(getResources().getString(R.string.ringtone))
-                .setMessage(getResources().getString(R.string.set_as_ringtone_question, sound.getTitle()))
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        Utilities.setAsRingtone(sound, getApplicationContext());
-                    }
-                })
-                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
-                })
-                .show();
+
+
+    @Override
+    public void displayRingtonePopup(Sound sound) {
+        displayPopup(sound);
     }
 
+    @Override
+    public void disablePopup() {
+        dismissPopup();
+    }
+
+    /**
+     * POPUP
+     */
+    public void displayPopup(Sound sound) {
+        android.app.FragmentManager fragmentManager = this.getFragmentManager();
+        ringtonePopup = new RingtoneFragment();
+        ringtonePopup.initFragment(ringtoneItems, this.getApplicationContext(), sound, this);
+        ringtonePopup.show(fragmentManager, "Tag");
+    }
+
+    public void dismissPopup() {
+        if (ringtonePopup != null) {
+            ringtonePopup.dismiss();
+        }
+    }
+    /**
+     * End Popup
+     */
+
+
+    @Override
+    public void setAsRingtone(Sound sound) {
+        Utilities.setAsRingtone(sound, getApplicationContext());
+        disablePopup();
+        Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.set_ringtone_done), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void setAsNotification(Sound sound) {
+        Utilities.setAsNotification(sound, getApplicationContext());
+        disablePopup();
+        Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.set_ringtone_done), Toast.LENGTH_LONG).show();
+    }
 }
