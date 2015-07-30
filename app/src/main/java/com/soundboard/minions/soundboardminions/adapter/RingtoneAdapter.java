@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.soundboard.minions.soundboardminions.R;
@@ -32,6 +33,9 @@ public class RingtoneAdapter extends ArrayAdapter<RingtoneItem> {
 
         TextView itemType = (TextView) convertView.findViewById(R.id.ringtone_item_type);
         itemType.setText(ringtoneItem.getTypeName());
+
+        ImageView image = (ImageView) convertView.findViewById(R.id.img_ringtone);
+        image.setImageDrawable(getContext().getResources().getDrawable(ringtoneItem.getImage()));
 
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override

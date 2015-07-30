@@ -30,6 +30,7 @@ public class MemoryPieceAdapter extends ArrayAdapter<MemoryPiece> {
     private int nbPieces;
     private MemoryWonListener memoryWonListener;
     private static MediaPlayer mPlayer;
+    private int reversed = 0;
 
     public MemoryPieceAdapter(Context context, List<MemoryPiece> resource, MemoryWonListener listener) {
         super(context, 0, resource);
@@ -42,6 +43,7 @@ public class MemoryPieceAdapter extends ArrayAdapter<MemoryPiece> {
     }
 
     public void reloadGame() {
+        reversed = 0;
         reversedPieceEvents.clear();
         reversedPieceRelative.clear();
         reversedPieces.clear();
@@ -86,13 +88,14 @@ public class MemoryPieceAdapter extends ArrayAdapter<MemoryPiece> {
         front.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mPlayer != null && mPlayer.isPlaying()) {
+                if (mPlayer != null && reversed >= 2 && mPlayer.isPlaying()) {
                     return;
                 }
                 if (mp.getState() == Constants.MemoryPieceState.HIDDEN) {
                     rootLayout.startAnimation(new FlipAnimation(front, back));
                     mp.setState(Constants.MemoryPieceState.DISPLAYED);
                     playSound(mp.getSound());
+                    reversed++;
                     mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                         @Override
                         public void onCompletion(final MediaPlayer mediaplayer) {
@@ -163,7 +166,7 @@ public class MemoryPieceAdapter extends ArrayAdapter<MemoryPiece> {
             reversedPieceEvents.add(backToFront);
             this.notifyDataSetChanged();
         }
-
+        reversed--;
     }
 
 
