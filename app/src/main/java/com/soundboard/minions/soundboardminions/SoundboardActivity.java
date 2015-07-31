@@ -46,8 +46,6 @@ public class SoundboardActivity extends ActionBarActivity
         soundListView.setAdapter(adapter);
     }
 
-
-
     @Override
     public void displayRingtonePopup(Sound sound) {
         displayPopup(sound);
@@ -76,7 +74,6 @@ public class SoundboardActivity extends ActionBarActivity
     /**
      * End Popup
      */
-
 
     @Override
     public void setAsRingtone(Sound sound) {

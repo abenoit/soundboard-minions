@@ -16,5 +16,8 @@
     <string name="menu">Retour au menu principal</string>
     <string name="long_press_to_set_as_ringtone">Reste appuyé sur un son pour le définir comme sonnerie !</string>
     <string name="notification">Son de notification</string>
-    <string name="define_as">Définir %s comme ...</string>
+    <string name="define_as">Définir %s comme …</string>
+    <string name="memory_rules">Appuie et retourne deux cartes du jeu. Si tu trouves les deux mêmes sons, les cartes sont marquées comme validées. Le jeu se termine lorsque tu as trouvé toutes les paires !</string>
+    <string name="start">Jouer</string>
+
 </resources>

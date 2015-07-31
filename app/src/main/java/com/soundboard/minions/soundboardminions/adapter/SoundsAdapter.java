@@ -67,7 +67,6 @@ public class SoundsAdapter extends ArrayAdapter<Sound> {
                     playingImgView = null;
                     playingMainView = null;
                     playingProgressBar = null;
-
                 }
             }
         });
@@ -103,7 +102,6 @@ public class SoundsAdapter extends ArrayAdapter<Sound> {
                 setStopReadingState(playSoundImg, progressReading, mainView);
             }
         });
-
         mPlayer.start();
         mPlayer.seekTo(0);
     }

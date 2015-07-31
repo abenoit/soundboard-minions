@@ -30,6 +30,8 @@
         android:id="@+id/soundsListLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
         android:clipToPadding="false"
         android:columnWidth="90dp"
         android:gravity="center"

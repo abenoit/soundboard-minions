@@ -31,10 +31,24 @@ public class MemoryActivity extends ActionBarActivity implements MemoryWonListen
         setContentView(R.layout.activity_memory);
         Utilities.trackNavigation(this);
         setUIReferences();
-        InitSoundList();
+        initSoundList();
+        displayRulesPopup();
     }
 
-    private void InitSoundList() {
+    private void displayRulesPopup() {
+        new AlertDialog.Builder(this)
+            .setTitle(getResources().getString(R.string.title_activity_memory))
+            .setMessage(getResources().getString(R.string.memory_rules))
+            .setPositiveButton(R.string.start, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    launchGame();
+                }
+            })
+            .show();
+    }
+
+    private void initSoundList() {
         memoryPieces = new ArrayList<>();
         generateNewGame();
         adapter = new MemoryPieceAdapter(this, memoryPieces, this);
