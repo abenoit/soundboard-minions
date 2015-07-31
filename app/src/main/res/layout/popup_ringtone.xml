@@ -17,11 +17,12 @@
 
     <ListView
         android:id="@+id/ringtone_list"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal"
         android:clipToPadding="false"
         android:paddingBottom="15dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:divider="@drawable/background_transparent"
         android:dividerHeight="15dp"
         android:gravity="center" >

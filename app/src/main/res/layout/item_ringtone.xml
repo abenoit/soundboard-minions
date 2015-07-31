@@ -5,14 +5,13 @@
     android:id="@+id/cardsound"
     android:gravity="center_horizontal"
     android:layout_centerHorizontal="true"
+    android:layout_centerInParent="true"
+    android:layout_gravity="center"
     android:layout_width="match_parent"
-    android:paddingEnd="20dp"
-    android:paddingRight="20dp"
-    android:layout_marginLeft="20dp"
-    android:layout_marginStart="20dp"
     android:layout_height="50dp"
     card_view:cardCornerRadius="5dp"
-    card_view:cardElevation="4dp">
+    card_view:cardElevation="4dp"
+    android:layoutMode="clipBounds">
 
     <LinearLayout
         android:layout_width="match_parent"
