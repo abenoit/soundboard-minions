@@ -10,17 +10,28 @@ public class RingtoneItem {
 
     private Sound sound;
 
-    public RingtoneItem(String typeName, Constants.TypeRingtone type) {
+    private Integer image;
+
+    public RingtoneItem(String typeName, Constants.TypeRingtone type, Integer image) {
         this.typeName = typeName;
         this.type = type;
+        this.image = image;
     }
 
     public String getTypeName() {
         return typeName;
     }
 
+    public Integer getImage() {
+        return image;
+    }
+
     public Constants.TypeRingtone getType() {
         return type;
     }
 
+
+    public Sound getSound() {
+        return sound;
+    }
 }

@@ -1,14 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardsound"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:gravity="center"
+    android:layout_centerInParent="true"
+    android:layout_centerHorizontal="true"
+    android:layout_gravity="center_horizontal"
+    android:paddingTop="100dp"
+    card_view:cardCornerRadius="5dp"
+    card_view:cardElevation="4dp">
 
-    <TextView
-        android:id="@+id/ringtone_item_type"
-        android:padding="5dp"
-        android:textSize="16sp"
-        android:textColor="@color/minion_blue"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp" />
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-</LinearLayout>
+        <ImageView
+            android:id="@+id/img_ringtone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:src="@drawable/ic_ring_volume_blue_36dp" />
+
+        <TextView
+            android:id="@+id/ringtone_item_type"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
+            android:gravity="center_vertical"
+            android:text="test"
+            android:textColor="@color/minion_blue"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>

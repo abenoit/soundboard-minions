@@ -31,8 +31,8 @@ public class SoundboardActivity extends ActionBarActivity
         setContentView(R.layout.activity_soundboard);
         Utilities.trackNavigation(this);
         ringtoneItems = new ArrayList<>();
-        ringtoneItems.add(new RingtoneItem(getString(R.string.ringtone), Constants.TypeRingtone.RINGTONE));
-        ringtoneItems.add(new RingtoneItem(getString(R.string.notification), Constants.TypeRingtone.NOTIFICATION));
+        ringtoneItems.add(new RingtoneItem(getString(R.string.ringtone), Constants.TypeRingtone.RINGTONE, R.drawable.ic_ring_volume_blue_36dp));
+        ringtoneItems.add(new RingtoneItem(getString(R.string.notification), Constants.TypeRingtone.NOTIFICATION, R.drawable.ic_messenger_black_36dp));
         setUIReferences();
     }
 
@@ -80,15 +80,15 @@ public class SoundboardActivity extends ActionBarActivity
 
     @Override
     public void setAsRingtone(Sound sound) {
-        Utilities.setAsRingtone(sound, getApplicationContext());
         disablePopup();
+        Utilities.setAsRingtone(sound, getApplicationContext());
         Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.set_ringtone_done), Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void setAsNotification(Sound sound) {
-        Utilities.setAsNotification(sound, getApplicationContext());
         disablePopup();
+        Utilities.setAsNotification(sound, getApplicationContext());
         Toast.makeText(getApplicationContext(), getApplicationContext().getResources().getString(R.string.set_ringtone_done), Toast.LENGTH_LONG).show();
     }
 }
