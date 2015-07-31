@@ -19,7 +19,7 @@ import com.soundboard.minions.soundboardminions.utilities.Utilities;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SoundboardActivity extends ActionBarActivity
+public class SoundboardActivity extends BackHomeActionBar
         implements SoundboardEvents {
 
     private RingtoneFragment ringtonePopup;

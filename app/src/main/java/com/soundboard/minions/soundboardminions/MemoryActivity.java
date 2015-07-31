@@ -3,7 +3,6 @@ package com.soundboard.minions.soundboardminions;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.widget.GridView;
 
@@ -18,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class MemoryActivity extends ActionBarActivity implements MemoryWonListener {
+public class MemoryActivity extends BackHomeActionBar implements MemoryWonListener {
 
     private List<MemoryPiece> memoryPieces;
     private GridView soundListView;
@@ -34,6 +33,11 @@ public class MemoryActivity extends ActionBarActivity implements MemoryWonListen
         initSoundList();
         displayRulesPopup();
     }
+
+    private void setUIReferences() {
+        soundListView = (GridView) findViewById(R.id.memoryPieceLayout);
+    }
+
 
     private void displayRulesPopup() {
         new AlertDialog.Builder(this)
@@ -82,9 +86,6 @@ public class MemoryActivity extends ActionBarActivity implements MemoryWonListen
         }
     }
 
-    private void setUIReferences() {
-        soundListView = (GridView) findViewById(R.id.memoryPieceLayout);
-    }
 
     private void launchGame(){
         generateNewGame();
