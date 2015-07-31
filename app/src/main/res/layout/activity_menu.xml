@@ -1,5 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -9,8 +10,14 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.soundboard.minions.soundboardminions.MenuActivity">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo_soundboard"
+        android:layout_gravity="center"
+        android:padding="20dp"/>
 
-    <com.gc.materialdesign.views.ButtonRectangle
+    <!--<com.gc.materialdesign.views.ButtonRectangle
         android:id="@+id/go_to_soundboard"
         style="?android:textAppearanceSmall"
         android:layout_width="match_parent"
@@ -32,6 +39,85 @@
         android:onClick="goToMemory"
         android:text="@string/goToMemory"
         android:textSize="12sp"
-        android:textStyle="bold" />
+        android:textStyle="bold" />-->
+    <android.support.v7.widget.CardView
+        android:id="@+id/go_to_soundboard"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        card_view:cardCornerRadius="5dp"
+        card_view:cardElevation="4dp"
+        android:onClick="goToSoundboard"
+        android:layout_marginTop="15dp">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/soundboardBtnLogo"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_queue_music_blue_grey_900_36dp"
+                android:textColor="@color/minion_blue" />
+
+            <TextView
+                android:id="@+id/soundboardBtnTv"
+                android:text="@string/goToSoundboard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/soundboardBtnLogo"
+                android:layout_toEndOf="@id/soundboardBtnLogo"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/minion_blue"
+                android:textSize="20sp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"/>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/go_to_memory"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        card_view:cardCornerRadius="5dp"
+        card_view:cardElevation="4dp"
+        android:layout_marginTop="20dp"
+        android:onClick="goToMemory">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/memoryBtnLogo"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_view_module_blue_grey_900_36dp"
+                android:textColor="@color/minion_blue" />
+
+            <TextView
+                android:id="@+id/memoryBtnTv"
+                android:text="@string/goToMemory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/memoryBtnLogo"
+                android:layout_toEndOf="@id/memoryBtnLogo"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/minion_blue"
+                android:textSize="20sp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"/>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
 
 </LinearLayout>
