@@ -3,6 +3,8 @@
     <string name="app_name">Soundboard Minions</string>
     <string name="press_to_play">Pulsa un sonido para jugar lo</string>
     <string name="title_activity_memory">Memoria</string>
+    <string name="title_activity_menu">Menú</string>
+    <string name="action_settings">Settings</string>
 
     <string name="goToSoundboard">Soundboard</string>
     <string name="goToMemory">Jugar al Memoria</string>

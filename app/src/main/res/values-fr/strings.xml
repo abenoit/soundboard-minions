@@ -4,6 +4,9 @@
     <string name="press_to_play">Appuie sur un son pour le jouer !</string>
     <string name="title_activity_memory">Memory</string>
 
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_menu">Menu</string>
+
     <string name="goToSoundboard">Soundboard</string>
     <string name="goToMemory">Jouer au Memory</string>
     <string name="set_as_ringtone">Définir %s comme sonnerie</string>
